@@ -9,5 +9,5 @@
 
 ***Instagram ID*** : [XDeveloperX](https://instagram.com/XDeveloperX)
 
-***channel :*** [TeleBlasterTeam](https://telegram.me/TeleBlasterTeam
+***channel :*** [MrPHPTM](https://telegram.me/mrphpTm)
  
