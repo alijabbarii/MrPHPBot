@@ -1,4 +1,4 @@
-*MrPHPBot V1.0*
+*MrPHPBot V1.1*
 
 
 
