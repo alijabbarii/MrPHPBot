@@ -10,7 +10,7 @@ Dev ID : @NOBLEST
 GitAdress : Github.com/NobLestDev/MrPHPBot
 ─═ঊঈঊঈ═─╯
 */
-define('API_KEY','322735835:AAH90FX5sGg9oHFbLyCN9gqiBK-R8Ci0xcQ');
+define('API_KEY','');
 //-----------------------------------------------------------------------------------------
 //فانکشن MrPHPBot :
 function MrPHPBot($method,$datas=[]){
@@ -37,37 +37,22 @@ $message_id = $message->message_id;
 $first_name = $message->from->first_name;
 $last_name = $message->from->last_name;
 $username = $message->from->username;
+mkdir("data/username.txt/$username");
 $textmassage = $message->text;
 $step= file_get_contents("data/$from_id/file.txt");
 $Dev = 193930120;
+$Dev2 = 283392246;
 $txtt = file_get_contents('data/users.txt');
-$data = $update->callback_query->data;
-$chatid = $update->callback_query->message->chat->id;
-$joke = file_get_contents("https://web-service.000webhostapp.com/jock");
+$jj = file_get_contents("http://web-service.000webhostapp.com/joke");
 $messageid = $update->callback_query->message->message_id;
+$ban = file_get_contents('data/banlist.txt');
 //-----------------------------------------------------------------------------------------
 //فانکشن ها : 
-function sendMessage($chat_id, $text, $reply_to_message_id){
+function SendMessage($chat_id, $text){
 MrPHPBot('sendMessage',[
 'chat_id'=>$chat_id,
 'text'=>$text,
-'parse_mode'=>'html',
-'reply_to_message_id'=>$reply_to_message_id]);
-	 }
-function Forward($KojaShe,$AzKoja,$KodomMSG)
-{
-MrPHPBot('ForwardMessage',[
-'chat_id'=>$KojaShe,
-'from_chat_id'=>$AzKoja,
-'message_id'=>$KodomMSG
-]);
-}
-function SendPhoto($chat_id, $photo, $caption = null){
-bot('SendPhoto',[
-'chat_id'=>$chat_id,
-'photo'=>$photo,
-'caption'=>$caption
-]);
+'parse_mode'=>'MarkDown']);
 }
 function save($filename, $data)
 {
@@ -85,18 +70,19 @@ if($textmassage=="/start"){
         sendAction($chat_id, 'typing');
 	MrPHPBot('sendmessage',[
 	'chat_id'=>$chat_id,
-	'text'=>"h: ",
+	'text'=>"` 🎗سلام به ربات اقای پی اچ پی خوش آمدید
+لطفا زبان خود را انتخاب کنید : 
+—-------------------------------
+Languages : 🇮🇷 🇬🇧
+--------------------------------
+🎗Welcome To MrPHPBot
+Please Select Your Language :`",
+        'parse_mode'=>'MarkDown',
 	'reply_markup'=>json_encode([
 	'resize_keyboard'=>true,
 	'keyboard'=>[
 	[
-	['text'=>"بخش ابزارها 🛠"],['text'=>"بخش مارک دون 📝"]
-	],
-	[
-	['text'=>"کانال ما 🌐"],['text'=>"درباره ما ❓"]
-	],
- 	[
-	['text'=>"بروزرسانی 🔃"],['text'=>"ارسال نظر 📩"]
+	['text'=>"English 🇬🇧"],['text'=>"فارسی 🇮🇷"]
 	],
 	]
 	])
@@ -104,7 +90,41 @@ if($textmassage=="/start"){
 	]);
 	
 	
-	}if($textmassage=="🔲🔳
+	}elseif($textmassage=="تغییر زبان ⚓️"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"لطفا زبان خود را انتخاب کنید :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"English 🇬🇧"],['text'=>"فارسی 🇮🇷"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="Change language ⚓️"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"Please choose your language :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"English 🇬🇧"],['text'=>"فارسی 🇮🇷"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="🔲🔳
 🔳🔲"){
         sendAction($chat_id, 'typing');
 	MrPHPBot('sendmessage',[
@@ -122,6 +142,121 @@ if($textmassage=="/start"){
  	[
 	['text'=>"بروزرسانی 🔃"],['text'=>"ارسال نظر 📩"]
 	],
+        [
+	['text'=>"اخبار ربات 🎗"],['text'=>"تغییر زبان ⚓️"]
+	],
+        [
+	['text'=>"آمار ربات 📊"],['text'=>"تبلیغات 💢"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="فارسی 🇮🇷"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"لطفا یکی از گزینه ها را انتخاب کنید :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"بخش ابزارها 🛠"],['text'=>"بخش مارک دون 📝"]
+	],
+	[
+	['text'=>"کانال ما 🌐"],['text'=>"درباره ما ❓"]
+	],
+ 	[
+	['text'=>"بروزرسانی 🔃"],['text'=>"ارسال نظر 📩"]
+	],
+        [
+	['text'=>"اخبار ربات 🎗"],['text'=>"تغییر زبان ⚓️"]
+	],
+        [
+	['text'=>"آمار ربات 📊"],['text'=>"تبلیغات 💢"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="🔳🔲
+🔲🔳"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"Main Menu :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"Tools Section 🛠"],['text'=>"MarkDown Section 📝"]
+	],
+	[
+	['text'=>"Our Channel 🌐"],['text'=>"About us ❓"]
+	],
+ 	[
+	['text'=>"Update 🔃"],['text'=>"Post a Comment 📩"]
+	],
+        [
+	['text'=>"Robot News 🎗"],['text'=>"Change language ⚓️"]
+	],
+        [
+	['text'=>"The number of users 📊"],['text'=>"Advertising 💢"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="English 🇬🇧"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"Please choose one of these options :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"Tools Section 🛠"],['text'=>"MarkDown Section 📝"]
+	],
+	[
+	['text'=>"Our Channel 🌐"],['text'=>"About us ❓"]
+	],
+ 	[
+	['text'=>"Update 🔃"],['text'=>"Post a Comment 📩"]
+	],
+        [
+	['text'=>"Robot News 🎗"],['text'=>"Change language ⚓️"]
+	],
+        [
+	['text'=>"The number of users 📊"],['text'=>"Advertising 💢"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="Tools Section 🛠"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"Please choose one of these options :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"Joke Random 📝"],['text'=>"Your Link 🔗"]
+	],
+	[
+	['text'=>"your information 🆔"],['text'=>"🔳🔲
+🔲🔳"]
+	],
 	]
 	])
 	
@@ -132,20 +267,38 @@ if($textmassage=="/start"){
         sendAction($chat_id, 'typing');
 	MrPHPBot('sendmessage',[
 	'chat_id'=>$chat_id,
-	'text'=>"یکی از گزینه ها را انتخاب کنید :",
+	'text'=>"لطفا یکی از گزینه ها را انتخاب کنید :",
 	'reply_markup'=>json_encode([
 	'resize_keyboard'=>true,
 	'keyboard'=>[
 	[
 	['text'=>"جوک رندوم 📝"],['text'=>"لینک شما 🔗"]
-  ],
-  [
-	['text'=>["ساخت لوگو 🎗"],['text'=>"طراحی اسم 📝"]
 	],
 	[
 	['text'=>"اطلاعات شما 🆔"],['text'=>"🔲🔳
 🔳🔲"]
+	],
 	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="MarkDown Section 📝"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"Please choose one of these options :",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"Bold Text ✏️"],['text'=>"Italice Text ✏️"]
+	],
+	[
+	['text'=>"Code Text ✏️"],['text'=>"🔳🔲
+🔲🔳"]
+	],
 	]
 	])
 	
@@ -187,6 +340,20 @@ if($textmassage=="/start"){
 			'text'=>"*$textmassage*",
       'parse_mode'=>'MarkDown',
 			]);
+}elseif($textmassage=="Bold Text ✏️"){
+                        sendAction($chat_id, 'typing');
+			save("data/$from_id/file.txt","bold1");
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"Send your text :",
+		]);
+		}elseif($step=="bold1"){
+                       save("data/$from_id/file.txt","none");
+			MrPHPBot('sendmessage',[
+			'chat_id'=>$chat_id,
+			'text'=>"*$textmassage*",
+      'parse_mode'=>'MarkDown',
+			]);
 }elseif($textmassage=="کج کردن نوشته ✏️"){
                         sendAction($chat_id, 'typing');
 			save("data/$from_id/file.txt","italic");
@@ -199,6 +366,34 @@ if($textmassage=="/start"){
 			MrPHPBot('sendmessage',[
 			'chat_id'=>$chat_id,
 			'text'=>"_ $textmassage _",
+      'parse_mode'=>'MarkDown',
+			]);
+}elseif($textmassage=="Italice Text ✏️"){
+                        sendAction($chat_id, 'typing');
+			save("data/$from_id/file.txt","italic1");
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"Send your text :",
+		]);
+		}elseif($step=="italic1"){
+                       save("data/$from_id/file.txt","none");
+			MrPHPBot('sendmessage',[
+			'chat_id'=>$chat_id,
+			'text'=>"_ $textmassage _",
+      'parse_mode'=>'MarkDown',
+			]);
+}elseif($textmassage=="Code Text ✏️"){
+                        sendAction($chat_id, 'typing');
+			save("data/$from_id/file.txt","code1");
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"Send your text :",
+		]);
+		}elseif($step=="code1"){
+                       save("data/$from_id/file.txt","none");
+			MrPHPBot('sendmessage',[
+			'chat_id'=>$chat_id,
+			'text'=>"`$textmassage`",
       'parse_mode'=>'MarkDown',
 			]);
 }elseif($textmassage=="کد کردن نوشته ✏️"){
@@ -215,21 +410,37 @@ if($textmassage=="/start"){
 			'text'=>"`$textmassage`",
       'parse_mode'=>'MarkDown',
 			]);
-}elseif($textmassage=="طراحی اسم 📝"){
+}elseif($textmassage=="Post a Comment 📩"){
                         sendAction($chat_id, 'typing');
-			save("data/$from_id/file.txt","name");
+			save("data/$from_id/file.txt","nazar1");
 				MrPHPBot('sendmessage',[
 		'chat_id'=>$chat_id,
-		'text'=>"نام خود را فرستید :",
-		]);
-		}elseif($step=="name"){
+		'text'=>"Please submit your opinion :",
+                 'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'keyboard'=>[
+	[
+	['text'=>"🔳🔲
+🔲🔳"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($step=="nazar1"){            
                        save("data/$from_id/file.txt","none");
-			MrPHPBot('sendmessage',[
+                          Forward($Dev,$chat_id,$message_id);
+			MrPHPBot('sendmessage',[       
 			'chat_id'=>$chat_id,
-			'text'=>"تکمیل نشده است.",
+			'text'=>"Send.",
       'parse_mode'=>'MarkDown',
-			]);
-}elseif($textmassage=="ارسال نظر 📩"){
+	
+	]);
+	
+	
+	}elseif($textmassage=="ارسال نظر 📩"){
                         sendAction($chat_id, 'typing');
 			save("data/$from_id/file.txt","nazar");
 				MrPHPBot('sendmessage',[
@@ -259,7 +470,33 @@ if($textmassage=="/start"){
 	]);
 	
 	
-	}elseif($textmassage=="درباره ما ❓"){
+	}elseif($textmassage=="About us ❓"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"_
+The robot programming language is written in PHP
+V1.0
+The robot capabilities:
+
+1. Send it to channel
+2. Design name
+3. Logo Design
+4. Ability to Mark Dunne
+5. Send random jokes
+6. Send news
+7. Post time history
+8. Ability to reverse the written
+9. beautiful menu
+10 has quite smart admin panel
+And many other features.
+Programmer: Mohammad Hossein Heydari
+Contact Programmer:
+@NobLest
+@NobLestBot_",
+'parse_mode'=>'MarkDown',
+			]);
+}elseif($textmassage=="درباره ما ❓"){
         sendAction($chat_id, 'typing');
 	MrPHPBot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -285,7 +522,24 @@ V1.0
 @NobLestBot_",
 'parse_mode'=>'MarkDown',
 			]);
-}elseif($textmassage=="کانال ما 🌐"){
+}elseif($textmassage=="Our Channel 🌐"){
+        sendAction($chat_id, 'typing');
+	MrPHPBot('sendmessage',[
+	'chat_id'=>$chat_id,
+	'text'=>"We subscribe to support our channel.",
+	'reply_markup'=>json_encode([
+	'resize_keyboard'=>true,
+	'inline_keyboard'=>[
+	[
+	['text'=>"💠 Subscribe to our channel",'url'=>"https://telegram.me/MrPHPTM"]
+	],
+	]
+	])
+	
+	]);
+	
+	
+	}elseif($textmassage=="کانال ما 🌐"){
         sendAction($chat_id, 'typing');
 	MrPHPBot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -302,7 +556,79 @@ V1.0
 	]);
 	
 	
-	}elseif ($textmassage == "بروزرسانی 🔃"){
+	}elseif ($textmassage == "Update 🔃"){
+ sendAction($chat_id, 'typing');
+ MrPHPBot('sendMessage',[
+ 'chat_id'=>$chat_id,
+ 'text'=>'0%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id,
+ 'text'=>'10%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'20%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'30%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'40%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'50%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'60%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'70%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'80%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'90%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'100%'
+ ]);
+ sleep(1);
+ MrPHPBot('editMessageText',[
+ 'chat_id'=>$chat_id,
+ 'message_id'=>$message_id + 1,
+ 'text'=>'Updated.'
+ ]);		
+ }elseif ($textmassage == "بروزرسانی 🔃"){
  sendAction($chat_id, 'typing');
  MrPHPBot('sendMessage',[
  'chat_id'=>$chat_id,
@@ -381,6 +707,13 @@ V1.0
 		'text'=>"*Your Information* :\n------\n*FirstName* : `$first_name`\n------\n*LastName* : `$last_name`\n------\n*UserName* : `@$username`\n------\n*Telegram ID* : `$from_id`",
     'parse_mode'=>'MarkDown',
 		]);
+		}elseif($textmassage=="your information 🆔"){
+        sendAction($chat_id, 'typing');
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"*Your Information* :\n------\n*FirstName* : `$first_name`\n------\n*LastName* : `$last_name`\n------\n*UserName* : `@$username`\n------\n*Telegram ID* : `$from_id`",
+    'parse_mode'=>'MarkDown',
+		]);
 		}elseif($textmassage=="لینک شما 🔗"){
         sendAction($chat_id, 'typing');
 				MrPHPBot('sendmessage',[
@@ -388,45 +721,86 @@ V1.0
 		'text'=>"لینک اختصاصی شما :\nhttps://telegram.me/MrPHPBot?start=MPB$from_id",
     'parse_mode'=>'MarkDown',
 		]);
+		}elseif($textmassage=="YourLink 🔗"){
+        sendAction($chat_id, 'typing');
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"YourLink :\nhttps://telegram.me/MrPHPBot?start=MPB$from_id",
+    'parse_mode'=>'MarkDown',
+		]);
 		}elseif($textmassage=="جوک رندوم 📝"){
         sendAction($chat_id, 'typing');
 				MrPHPBot('sendmessage',[
 		'chat_id'=>$chat_id,
-		'text'=>"$joke\n-------\n@MrPHPBot",
+		'text'=>"$jj\n-------\n@MrPHPTm",
+    'parse_mode'=>'MarkDown',
+		]);
+		}elseif($textmassage=="Joke Random 📝"){
+        sendAction($chat_id, 'typing');
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"$jj\n-------\n@MrPHPTM",
     'parse_mode'=>'MarkDown',
 		]);
 		}
  //end 
- $users = file_get_contents('data/users.txt');
+ $users = file_get_contents('data/username.txt');
+$members = explode("\n", $users);
+if (!in_array($username, $members)) {
+    $adduser = file_get_contents('data/username.txt');
+    $adduser .= $username . "\n";
+    file_put_contents('data/username.txt', $adduser);
+}$users = file_get_contents('data/users.txt');
 $members = explode("\n", $users);
 if (!in_array($chat_id, $members)) {
     $adduser = file_get_contents('data/users.txt');
     $adduser .= $chat_id . "\n";
     file_put_contents('data/users.txt', $adduser);
-}if ($textmassage == 'sendtoall' && $from_id == $Dev){
-	     sendAction($chat_id, 'typing');
-	     save("data/$from_id/file.txt","toalll");
-		 sendMessage($chat_id, 'پیام خود را ارسال کنید :', $message_id);
-	   }
-	   elseif ($step == 'toalll' && $from_id == $Dev){
-		 sendAction($chat_id, 'typing');
-		 sendMessage($chat_id, 'در حال انجام عملیات ...', $message_id);
-	     save("data/$from_id/file.txt","none");
-		 $sendtoall = $textmassage;
-     $ttxtt = file_get_contents('data/users.txt');
-		 $membersidd = explode("\n", $ttxtt);
-    for ($y = 0; $y < count($membersidd); $y++) {
-		   sendMessage($membersidd[$y], $sendtoall, $message_id);
-		 }
-		 sendAction($chat_id, 'typing');
-		 sendMessage($chat_id, "ارسال شد", $message_id);
-	   }elseif($textmassage=="/stats" && $from_id == $Dev){
+}elseif($textmassage=="The number of users 📊"){
                         $membersidd= explode("\n",$txtt);
                         $mmemcount = count($membersidd) -1;
+                        $id = file_get_contents('data/username.txt');
                         sendAction($chat_id, 'typing');
 				MrPHPBot('sendmessage',[
 		'chat_id'=>$chat_id,
-		'text'=>"تعداد کاربران : $mmemcount",
+		'text'=>"The number of users : $mmemcount\n-------\nMembers UserName :\n$id",
 		]);
-		}
+		}elseif($textmassage=="آمار ربات 📊"){
+                        $membersidd= explode("\n",$txtt);
+                        $mmemcount = count($membersidd) -1;
+                        $id = file_get_contents('data/username.txt');
+                        sendAction($chat_id, 'typing');
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"تعداد کاربران : $mmemcount\n-------\nآیدی کاربران :\n$id",
+		]);
+		}elseif($textmassage=="تبلیغات 💢"){
+                        sendAction($chat_id, 'typing');
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"جهت سفارش تبلیغات به آیدی زیر مراجعه کنید :\n@NOBLEST",
+                'parse_mode'=>'MarkDown',
+		]);
+		}elseif($textmassage=="Advertising 💢"){
+                        sendAction($chat_id, 'typing');
+				MrPHPBot('sendmessage',[
+		'chat_id'=>$chat_id,
+		'text'=>"To order ads I'd see the following :\n@NOBLEST",
+                'parse_mode'=>'MarkDown',
+		]);
+		}elseif($textmassage=="اخبار ربات 🎗"){
+     sendAction($chat_id, 'typing');
+     MrPHPBot("forwardmessage", [
+            'chat_id'=>$chat_id,
+            'from_chat_id'=>"@MrPHPTM",
+            'message_id'=>"15"
+        ]);
+    }elseif($textmassage=="Robot News 🎗"){
+     sendAction($chat_id, 'typing');
+     MrPHPBot("forwardmessage", [
+            'chat_id'=>$chat_id,
+            'from_chat_id'=>"@MrPHPTM",
+            'message_id'=>"15"
+        ]);
+    }
 ?>
