@@ -1,13 +1,11 @@
-*MrPHPBot V1.1*
+*UltraFast AntiSpamBot V1.1*
 
 
 
 ***Programmer*** : _MohammadHosseinHeidari_
 
 
-***Telegram ID*** : [NobLest](http://telegram.me/NobLest)
+***Telegram ID*** : [NobLest](http://telegram.me/noblest)
 
-***Instagram ID*** : [XDeveloperX](https://instagram.com/XDeveloperX)
-
-***channel :*** [MrPHPTM](https://telegram.me/mrphpTm)
+***channel :*** [PowerFulTean](https://telegram.me/PowerFulTean)
  
